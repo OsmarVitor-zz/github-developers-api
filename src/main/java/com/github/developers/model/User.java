@@ -49,4 +49,8 @@ public class User extends BaseEntity{
   @Enumerated(EnumType.STRING)
   private Role role;
 
+  @Column(name = "password")
+  @NotNull(message = "PASSWORD cannot be null")
+  private String password;
+
 }

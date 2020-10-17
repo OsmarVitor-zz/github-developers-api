@@ -1,12 +1,11 @@
 package com.github.developers.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.developers.model.enums.Role;
 import java.time.LocalDate;
-import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,5 +27,11 @@ public class UserDTO {
 
   @NotNull
   public String email;
+
+  @NotNull
+  private String password;
+
+  @NotNull
+  private Role role;
 
 }
