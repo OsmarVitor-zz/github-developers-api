@@ -1,9 +1,12 @@
 package com.github.developers.model;
 
+import com.github.developers.model.enums.Role;
 import java.time.LocalDate;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,8 +41,12 @@ public class User extends BaseEntity{
   @NotNull(message = "BIRTHDATE cannot be null")
   private LocalDate birthDate;
 
-  @Column(name = "identifier", unique = true)
+  @Column(name = "email", unique = true)
   @NotNull(message = "IDENTIFIER cannot be null")
-  public String identifier;
+  public String email;
+
+  @Column(name = "role")
+  @Enumerated(EnumType.STRING)
+  private Role role;
 
 }
