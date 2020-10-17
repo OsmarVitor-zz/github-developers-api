@@ -1,5 +1,7 @@
 package com.github.developers.service.imp;
 
+import com.github.developers.handler.exception.UserBadRequestException;
+import com.github.developers.handler.exception.UserNotFoundException;
 import com.github.developers.model.User;
 import com.github.developers.model.dto.UserDTO;
 import com.github.developers.repository.UserRepository;
@@ -18,9 +20,17 @@ public class UserServiceImpl implements UserService<UserDTO> {
 
   @Override
   public User create(UserDTO dto) {
-    //tratar exception caso o usuario ja tenha cadastro
-    User user = User.newBuilder().name(dto.getName()).birthDate(dto.getBirthDate()).email(dto.getEmail()).build();
-    return userRepository.save(user);
+    if(userRepository.findByEmail(dto.email).isPresent())
+      throw new UserBadRequestException(dto.email);
+    User userToCreate =
+        User.newBuilder()
+            .name(dto.getName())
+            .birthDate(dto.getBirthDate())
+            .email(dto.getEmail())
+            .password(dto.getPassword())
+            .role(dto.getRole())
+            .build();
+    return userRepository.save(userToCreate);
   }
 
   @Override
@@ -40,6 +50,8 @@ public class UserServiceImpl implements UserService<UserDTO> {
 
   @Override
   public UserDTO findByEmail(String email) {
-    return null;
+    User user = userRepository.findByEmail(email)
+        .orElseThrow(() -> new UserNotFoundException(email));
+    return ConverterDTO.convertToDTO(user);
   }
 }
