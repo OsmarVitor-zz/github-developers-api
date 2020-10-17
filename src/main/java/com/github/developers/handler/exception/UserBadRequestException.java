@@ -2,7 +2,7 @@ package com.github.developers.handler.exception;
 
 public class UserBadRequestException extends RuntimeException {
 
-  public UserBadRequestException(String identifier) {
-    super("User with identifier [" + identifier + "] already exists.");
+  public UserBadRequestException(String email) {
+    super("User with email [" + email + "] already exists.");
   }
 }
