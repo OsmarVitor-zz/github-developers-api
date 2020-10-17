@@ -25,7 +25,7 @@ public class UserController {
   private UserService<UserDTO> userService;
 
   @PostMapping
-  ResponseEntity<UserDTO> createUser(@RequestBody @Valid UserDTO userDTO){
+  ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO userDTO){
     User user = userService.create(userDTO);
     return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest().path("/{email}")
         .buildAndExpand(user.getUuid()).toUri()).build();
