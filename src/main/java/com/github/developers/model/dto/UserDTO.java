@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.developers.model.enums.Role;
 import java.time.LocalDate;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,6 +30,7 @@ public class UserDTO {
   public String email;
 
   @NotNull
+  @Size(min = 8, max = 99, message = "Password must be between 8 and 99")
   private String password;
 
   @NotNull
