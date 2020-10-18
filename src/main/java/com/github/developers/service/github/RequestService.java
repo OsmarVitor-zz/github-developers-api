@@ -7,5 +7,6 @@ public interface RequestService {
 
   HttpResponse<JsonNode> searchByName(String username);
 
+  HttpResponse<JsonNode> searchByLanguage(String language);
 
 }

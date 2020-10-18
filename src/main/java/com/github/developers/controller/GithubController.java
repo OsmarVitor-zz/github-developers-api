@@ -19,4 +19,8 @@ public class GithubController {
     return serivce.searchByName(name).getBody().toString();
   }
 
+  @GetMapping("search-by-language/{language}")
+  public String searchRepositoriesByTopic(@PathVariable(name = "language") String language){
+    return serivce.searchByLanguage(language).getBody().toString();
+  }
 }
