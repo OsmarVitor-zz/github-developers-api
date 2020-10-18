@@ -6,6 +6,7 @@ import com.github.developers.model.dto.LoginDTO;
 import com.github.developers.model.dto.UserDTO;
 import com.github.developers.model.dto.UserLoginResponseDTO;
 import com.github.developers.service.UserService;
+import com.github.developers.service.impl.UserDetailsServiceImpl;
 import io.swagger.annotations.Api;
 import java.util.List;
 import java.util.UUID;
@@ -39,9 +40,7 @@ public class UserController {
 
   @Autowired private UserService<UserDTO> userService;
 
-  @Autowired private AuthenticationManager authenticationManager;
-
-  @Autowired private JwtManager jwtManager;
+  @Autowired private UserDetailsServiceImpl userDetailsService;
 
   @PostMapping("/create")
   ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
@@ -56,19 +55,7 @@ public class UserController {
 
   @PostMapping("/login")
   ResponseEntity<UserLoginResponseDTO> login(@RequestBody LoginDTO loginDTO) {
-    UsernamePasswordAuthenticationToken token =
-        new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword());
-    Authentication authenticate = authenticationManager.authenticate(token);
-    SecurityContextHolder.getContext().setAuthentication(authenticate);
-
-    org.springframework.security.core.userdetails.User userDetails =
-        (org.springframework.security.core.userdetails.User) authenticate.getPrincipal();
-    List<String> roles =
-        userDetails.getAuthorities().stream()
-            .map(authority -> authority.getAuthority())
-            .collect(Collectors.toList());
-
-    return ResponseEntity.ok(jwtManager.createToken(userDetails.getUsername(), roles));
+    return ResponseEntity.ok(userDetailsService.loginUser(loginDTO));
   }
 
   @GetMapping("/{id}")
