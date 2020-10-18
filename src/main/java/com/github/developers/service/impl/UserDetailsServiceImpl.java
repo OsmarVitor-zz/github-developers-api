@@ -1,4 +1,4 @@
-package com.github.developers.service.imp;
+package com.github.developers.service.impl;
 
 import com.github.developers.model.dto.UserDTO;
 import com.github.developers.repository.UserRepository;

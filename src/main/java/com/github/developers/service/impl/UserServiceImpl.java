@@ -1,4 +1,4 @@
-package com.github.developers.service.imp;
+package com.github.developers.service.impl;
 
 import com.github.developers.handler.exception.UserBadRequestException;
 import com.github.developers.handler.exception.UserNotFoundException;
