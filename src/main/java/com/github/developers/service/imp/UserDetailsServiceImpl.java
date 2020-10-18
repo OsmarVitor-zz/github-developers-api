@@ -25,7 +25,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
   @Override
   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
     UserDTO userDTO = userService.findByEmail(email);
-    System.out.println("########################################################################################## userDTO " + userDTO.getName());
     List<GrantedAuthority> authorities = Arrays
         .asList(new SimpleGrantedAuthority("ROLE " + userDTO.getRole().name()));
     org.springframework.security.core.userdetails.User userDetails = new org.springframework.security.core.userdetails.User(userDTO.getEmail(), userDTO.getPassword(), authorities);
