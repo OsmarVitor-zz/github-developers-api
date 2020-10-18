@@ -23,25 +23,27 @@ public class UserServiceImpl implements UserService<UserDTO>{
   public User create(UserDTO dto) {
     if(userRepository.findByEmail(dto.email).isPresent())
       throw new UserBadRequestException(dto.email);
-    User userToCreate =
-        User.newBuilder()
-            .name(dto.getName())
-            .birthDate(dto.getBirthDate())
-            .email(dto.getEmail())
-            .password(dto.getPassword())
-            .role(dto.getRole())
-            .build();
+    User userToCreate = ConverterDTO.convertToUser(dto);
     return userRepository.save(userToCreate);
   }
 
   @Override
-  public UserDTO update(UserDTO dto) {
-    return null;
+  public User update(UserDTO dto) {
+    User user = userRepository.findByEmail(dto.getEmail())
+        .orElseThrow(() -> new UserNotFoundException("email", dto.email));
+
+    if(dto.getName().isEmpty()){
+      throw new UserBadRequestException(dto.getEmail());
+    }
+    user.setName(dto.getName());
+    return userRepository.save(user);
   }
 
   @Override
   public void delete(UserDTO dto) {
-
+    User user = userRepository.findByEmail(dto.getEmail())
+        .orElseThrow(() -> new UserNotFoundException("email", dto.email));
+    userRepository.delete(user);
   }
 
   @Override

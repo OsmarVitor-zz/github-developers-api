@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 public interface UserService<U> {
   User create(U dto);
 
-  U update(U dto);
+  User update(U dto);
 
   void delete(U dto);
 
