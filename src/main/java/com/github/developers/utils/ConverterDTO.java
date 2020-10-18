@@ -14,4 +14,14 @@ public final class ConverterDTO {
         .role(user.getRole())
         .build();
   }
+
+  public static User convertToUser(UserDTO userDTO){
+    return User.newBuilder()
+        .name(userDTO.getName())
+        .birthDate(userDTO.getBirthDate())
+        .email(userDTO.getEmail())
+        .password(userDTO.getPassword())
+        .role(userDTO.getRole())
+        .build();
+  }
 }
