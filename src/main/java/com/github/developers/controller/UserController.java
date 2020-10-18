@@ -6,6 +6,7 @@ import com.github.developers.model.dto.LoginDTO;
 import com.github.developers.model.dto.UserDTO;
 import com.github.developers.model.dto.UserLoginResponseDTO;
 import com.github.developers.service.UserService;
+import io.swagger.annotations.Api;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -19,6 +20,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +33,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
+@CrossOrigin("*")
+@Api(value = "")
 @RequestMapping("user")
 public class UserController {
 
