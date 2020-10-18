@@ -34,12 +34,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   public void configure(WebSecurity web) throws Exception {
+    web.ignoring().antMatchers("/v2/api-docs",
+        "/configuration/ui",
+        "/swagger-resources/**",
+        "/configuration/security",
+        "/swagger-ui.html",
+        "/webjars/**");
     web.ignoring().antMatchers(HttpMethod.POST, "/user/login");
     web.ignoring().antMatchers(HttpMethod.POST, "/user/create");
+
   }
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
+    http.csrf().disable()
+        .authorizeRequests()
+        .antMatchers( "/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**")
+        .permitAll();
     http.csrf().disable().authorizeRequests().anyRequest().authenticated();
     http.addFilterBefore(new AuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
   }
