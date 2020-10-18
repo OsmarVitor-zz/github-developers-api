@@ -17,5 +17,4 @@ public interface UserService<U> {
   U findByEmail(String email);
 
   U findById(UUID id);
-
 }

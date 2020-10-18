@@ -21,27 +21,34 @@ public class HandlerException {
   private static final HttpStatus FORBIDDEN = HttpStatus.FORBIDDEN;
 
   @ExceptionHandler(UserBadRequestException.class)
-  public ResponseEntity<ApiException> handlerBadRequestException(UserBadRequestException exception){
-    return ResponseEntity.status(BAD_REQUEST).body(createResponseException(exception.getMessage(), BAD_REQUEST.value(), LocalDate.now()));
+  public ResponseEntity<ApiException> handlerBadRequestException(
+      UserBadRequestException exception) {
+    return ResponseEntity.status(BAD_REQUEST)
+        .body(
+            createResponseException(exception.getMessage(), BAD_REQUEST.value(), LocalDate.now()));
   }
 
   @ExceptionHandler(UserNotFoundException.class)
-  public ResponseEntity<ApiException> handlerNotFoundException(UserNotFoundException exception){
-    return ResponseEntity.status(UNAUTHORIZED).body(createResponseException(exception.getMessage(), UNAUTHORIZED.value(), LocalDate.now()));
+  public ResponseEntity<ApiException> handlerNotFoundException(UserNotFoundException exception) {
+    return ResponseEntity.status(UNAUTHORIZED)
+        .body(
+            createResponseException(exception.getMessage(), UNAUTHORIZED.value(), LocalDate.now()));
   }
 
   @ExceptionHandler(BadCredentialsException.class)
-  public ResponseEntity<ApiException> badCredentialsException(BadCredentialsException exception){
-    return ResponseEntity.status(FORBIDDEN).body(createResponseException(exception.getMessage(), FORBIDDEN.value(), LocalDate.now()));
+  public ResponseEntity<ApiException> badCredentialsException(BadCredentialsException exception) {
+    return ResponseEntity.status(FORBIDDEN)
+        .body(createResponseException(exception.getMessage(), FORBIDDEN.value(), LocalDate.now()));
   }
 
   @ExceptionHandler(AccessDeniedException.class)
-  public ResponseEntity<ApiException> handlerAccessDeniedException(AccessDeniedException exception){
-    return ResponseEntity.status(NOT_FOUND).body(createResponseException(exception.getMessage(), NOT_FOUND.value(), LocalDate.now()));
+  public ResponseEntity<ApiException> handlerAccessDeniedException(
+      AccessDeniedException exception) {
+    return ResponseEntity.status(NOT_FOUND)
+        .body(createResponseException(exception.getMessage(), NOT_FOUND.value(), LocalDate.now()));
   }
 
   private ApiException createResponseException(String message, int statusCode, LocalDate date) {
     return new ApiException(message, statusCode, date);
   }
-
 }

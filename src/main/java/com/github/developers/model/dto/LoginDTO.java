@@ -19,14 +19,11 @@ import lombok.Setter;
 @Setter
 public class LoginDTO {
 
-  @Email
-  private String email;
+  @Email private String email;
 
-  @NotBlank
-  private String password;
+  @NotBlank private String password;
 
   @Column(name = "role")
   @Enumerated(EnumType.STRING)
   private Role role;
-
 }
