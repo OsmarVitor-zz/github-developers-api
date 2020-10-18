@@ -24,7 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Getter
 @Setter
 @Entity(name = "users")
-public class User extends BaseEntity{
+public class User extends BaseEntity {
 
   private static final long serialVersionUID = 1L;
 
@@ -52,5 +52,4 @@ public class User extends BaseEntity{
   @Column(name = "password")
   @NotNull(message = "PASSWORD cannot be null")
   private String password;
-
 }

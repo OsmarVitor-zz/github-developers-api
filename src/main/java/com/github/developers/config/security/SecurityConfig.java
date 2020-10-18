@@ -20,12 +20,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-  @Autowired
-  private UserDetailsServiceImpl userDetailService;
+  @Autowired private UserDetailsServiceImpl userDetailService;
 
-  @Autowired
-  private CustomPasswordEncoder passwordEncoder;
-
+  @Autowired private CustomPasswordEncoder passwordEncoder;
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -34,22 +31,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   public void configure(WebSecurity web) throws Exception {
-    web.ignoring().antMatchers("/v2/api-docs",
-        "/configuration/ui",
-        "/swagger-resources/**",
-        "/configuration/security",
-        "/swagger-ui.html",
-        "/webjars/**");
+    web.ignoring()
+        .antMatchers(
+            "/v2/api-docs",
+            "/configuration/ui",
+            "/swagger-resources/**",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**");
     web.ignoring().antMatchers(HttpMethod.POST, "/user/login");
     web.ignoring().antMatchers(HttpMethod.POST, "/user/create");
-
   }
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.csrf().disable()
+    http.csrf()
+        .disable()
         .authorizeRequests()
-        .antMatchers( "/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**")
+        .antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**")
         .permitAll();
     http.csrf().disable().authorizeRequests().anyRequest().authenticated();
     http.addFilterBefore(new AuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
@@ -57,8 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
   @Override
-  public AuthenticationManager authenticationManagerBean() throws Exception{
+  public AuthenticationManager authenticationManagerBean() throws Exception {
     return super.authenticationManagerBean();
   }
-
 }

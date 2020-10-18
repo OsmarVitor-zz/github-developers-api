@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class UserLoginResponseDTO implements Serializable  {
+public class UserLoginResponseDTO implements Serializable {
 
   private static final long serialVersionUID = 1L;
 

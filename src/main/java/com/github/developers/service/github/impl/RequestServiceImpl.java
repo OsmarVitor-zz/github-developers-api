@@ -18,11 +18,14 @@ public class RequestServiceImpl implements RequestService {
 
   @Override
   public HttpResponse<JsonNode> searchByName(String username) {
-    return Unirest.get(endpoint).routeParam("param", "users").routeParam("q",username).asJson();
+    return Unirest.get(endpoint).routeParam("param", "users").routeParam("q", username).asJson();
   }
 
   @Override
   public HttpResponse<JsonNode> searchByLanguage(String language) {
-    return Unirest.get(endpoint).routeParam("param", "repositories").routeParam("q","topic:" + language).asJson();
+    return Unirest.get(endpoint)
+        .routeParam("param", "repositories")
+        .routeParam("q", "topic:" + language)
+        .asJson();
   }
 }

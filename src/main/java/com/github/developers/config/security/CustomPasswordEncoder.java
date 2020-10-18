@@ -17,8 +17,8 @@ public class CustomPasswordEncoder implements PasswordEncoder {
     return true;
   }
 
-//  @Override
-//  public boolean matches(CharSequence charSequence, String encodedPassword) {
-//    return HashUtils.getSecureHashString(charSequence.toString()).equals(encodedPassword);
-//  }
+  //  @Override
+  //  public boolean matches(CharSequence charSequence, String encodedPassword) {
+  //    return HashUtils.getSecureHashString(charSequence.toString()).equals(encodedPassword);
+  //  }
 }

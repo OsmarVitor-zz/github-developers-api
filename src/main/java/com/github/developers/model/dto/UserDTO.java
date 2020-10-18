@@ -19,21 +19,17 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Setter
 public class UserDTO {
 
-  @NotNull
-  private String name;
+  @NotNull private String name;
 
   @JsonProperty("birth_date")
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   private LocalDate birthDate;
 
-  @NotNull
-  public String email;
+  @NotNull public String email;
 
   @NotNull
   @Size(min = 8, max = 99, message = "Password must be between 8 and 99")
   private String password;
 
-  @NotNull
-  private Role role;
-
+  @NotNull private Role role;
 }

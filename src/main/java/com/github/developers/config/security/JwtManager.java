@@ -30,6 +30,9 @@ public class JwtManager {
   }
 
   public Claims parseToken(String jwtToken) throws JwtException {
-    return  Jwts.parser().setSigningKey(SecurityConstants.API_KEY.getBytes()).parseClaimsJws(jwtToken).getBody();
+    return Jwts.parser()
+        .setSigningKey(SecurityConstants.API_KEY.getBytes())
+        .parseClaimsJws(jwtToken)
+        .getBody();
   }
 }

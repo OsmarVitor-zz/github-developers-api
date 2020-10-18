@@ -25,13 +25,17 @@ import org.springframework.web.filter.OncePerRequestFilter;
 public class AuthorizationFilter extends OncePerRequestFilter {
 
   @Override
-  protected void doFilterInternal(HttpServletRequest httpServletRequest,
-      HttpServletResponse httpServletResponse, FilterChain filterChain)
+  protected void doFilterInternal(
+      HttpServletRequest httpServletRequest,
+      HttpServletResponse httpServletResponse,
+      FilterChain filterChain)
       throws ServletException, IOException {
     String jwt = httpServletRequest.getHeader("Authorization");
 
-    if(jwt == null || !jwt.startsWith(SecurityConstants.JWT_PROVIDER)){
-      ApiException apiException = new ApiException("User not Authorized for recurse.", HttpStatus.UNAUTHORIZED.value(), LocalDate.now());
+    if (jwt == null || !jwt.startsWith(SecurityConstants.JWT_PROVIDER)) {
+      ApiException apiException =
+          new ApiException(
+              "User not Authorized for recurse.", HttpStatus.UNAUTHORIZED.value(), LocalDate.now());
       PrintWriter writer = httpServletResponse.getWriter();
 
       ObjectMapper mapper = new ObjectMapper();
@@ -47,19 +51,25 @@ public class AuthorizationFilter extends OncePerRequestFilter {
 
     jwt = jwt.replace(SecurityConstants.JWT_PROVIDER, "");
 
-    try{
+    try {
       Claims claims = new JwtManager().parseToken(jwt);
       String email = claims.getSubject();
       List<String> roles = (List<String>) claims.get(SecurityConstants.JWT_ROLE_KEY);
 
       List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-      roles.forEach(role -> {grantedAuthorities.add(new SimpleGrantedAuthority(role));});
+      roles.forEach(
+          role -> {
+            grantedAuthorities.add(new SimpleGrantedAuthority(role));
+          });
 
-      Authentication authentication = new UsernamePasswordAuthenticationToken(email, null, grantedAuthorities);
+      Authentication authentication =
+          new UsernamePasswordAuthenticationToken(email, null, grantedAuthorities);
 
       SecurityContextHolder.getContext().setAuthentication(authentication);
-    }catch (Exception e){
-      ApiException apiException = new ApiException("User not Authorized for recurse.", HttpStatus.UNAUTHORIZED.value(), LocalDate.now());
+    } catch (Exception e) {
+      ApiException apiException =
+          new ApiException(
+              "User not Authorized for recurse.", HttpStatus.UNAUTHORIZED.value(), LocalDate.now());
       PrintWriter writer = httpServletResponse.getWriter();
 
       ObjectMapper mapper = new ObjectMapper();

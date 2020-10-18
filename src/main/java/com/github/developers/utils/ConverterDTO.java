@@ -5,7 +5,7 @@ import com.github.developers.model.dto.UserDTO;
 
 public final class ConverterDTO {
 
-  public static UserDTO convertToDTO(User user){
+  public static UserDTO convertToDTO(User user) {
     return UserDTO.newBuilder()
         .birthDate(user.getBirthDate())
         .name(user.getName())
@@ -15,7 +15,7 @@ public final class ConverterDTO {
         .build();
   }
 
-  public static User convertToUser(UserDTO userDTO){
+  public static User convertToUser(UserDTO userDTO) {
     return User.newBuilder()
         .name(userDTO.getName())
         .birthDate(userDTO.getBirthDate())
