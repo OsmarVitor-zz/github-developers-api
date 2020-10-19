@@ -5,7 +5,6 @@ import com.github.developers.handler.exception.UserNotFoundException;
 import com.github.developers.model.User;
 import com.github.developers.model.dto.UserDTO;
 import com.github.developers.repository.UserRepository;
-;
 import com.github.developers.service.UserService;
 import com.github.developers.utils.ConverterDTO;
 import java.util.UUID;

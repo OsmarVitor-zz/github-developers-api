@@ -12,13 +12,9 @@ public class CustomPasswordEncoder implements PasswordEncoder {
     return HashUtils.getSecureHashString(charSequence.toString());
   }
 
+  //FIX HERE
   @Override
   public boolean matches(CharSequence charSequence, String s) {
     return true;
   }
-
-  //  @Override
-  //  public boolean matches(CharSequence charSequence, String encodedPassword) {
-  //    return HashUtils.getSecureHashString(charSequence.toString()).equals(encodedPassword);
-  //  }
 }
