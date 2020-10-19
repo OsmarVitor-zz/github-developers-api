@@ -8,6 +8,7 @@ import com.github.developers.model.dto.UserLoginResponseDTO;
 import com.github.developers.service.UserService;
 import com.github.developers.service.impl.UserDetailsServiceImpl;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -34,7 +35,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @CrossOrigin("*")
-@Api(value = "")
+@Api(value = "API for management users.")
 @RequestMapping("user")
 public class UserController {
 
@@ -43,6 +44,7 @@ public class UserController {
   @Autowired private UserDetailsServiceImpl userDetailsService;
 
   @PostMapping("/create")
+  @ApiOperation(value = "Create a new user")
   ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO userDTO) {
     User user = userService.create(userDTO);
     return ResponseEntity.created(
@@ -54,16 +56,19 @@ public class UserController {
   }
 
   @PostMapping("/login")
+  @ApiOperation(value = "Register a user")
   ResponseEntity<UserLoginResponseDTO> login(@RequestBody LoginDTO loginDTO) {
     return ResponseEntity.ok(userDetailsService.loginUser(loginDTO));
   }
 
   @GetMapping("/{id}")
+  @ApiOperation(value = "Search for a user by their id")
   ResponseEntity<UserDTO> findById(@PathVariable(name = "id") UUID uuid) {
     return ResponseEntity.ok(userService.findById(uuid));
   }
 
   @GetMapping("find-all")
+  @ApiOperation(value = "Search all users")
   ResponseEntity<Page<UserDTO>> findAll(
       @RequestParam(value = "page", defaultValue = "0") int page,
       @RequestParam(value = "size", defaultValue = "15") int size) {
@@ -71,12 +76,14 @@ public class UserController {
   }
 
   @DeleteMapping()
+  @ApiOperation(value = "Delete a user")
   ResponseEntity<Void> deleteUser(@RequestBody UserDTO userDTO) {
     userService.delete(userDTO);
     return ResponseEntity.noContent().build();
   }
 
   @PutMapping()
+  @ApiOperation(value = "Update a user")
   ResponseEntity<Void> updateUser(@RequestBody UserDTO userDTO) {
     userService.update(userDTO);
     return ResponseEntity.noContent().build();
