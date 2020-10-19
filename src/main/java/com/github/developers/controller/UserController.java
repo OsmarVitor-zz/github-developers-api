@@ -43,7 +43,7 @@ public class UserController {
   @Autowired private UserDetailsServiceImpl userDetailsService;
 
   @PostMapping("/create")
-  ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
+  ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO userDTO) {
     User user = userService.create(userDTO);
     return ResponseEntity.created(
             ServletUriComponentsBuilder.fromCurrentRequest()
