@@ -40,9 +40,10 @@ git clone https://github.com/OsmarVitor/github-developers-api.git
 Para o compilar e tesar o projeto é necessário instalar as seguintes tecnologias:
 
 :coffee: Java 8 - Caso você não tenha o Java 8 instalado bastar fazer o download por este link (Linux e WIndows): [Download Java 8](https://www.oracle.com/br/java/technologies/javase/javase-jdk8-downloads.html)
+
 :elephant: Postgres - Caso você não tenha o Postgres instalado basta fazer o download por este link (Linux e WIndows): [Download Postgres](https://www.postgresql.org/download/)
 
-##### :whale: Instalação do Postgres via Docker (Recomendado)
+## :whale: Instalação do Postgres via Docker (Recomendado)
 
 Se assim como eu você prefere usar o Docker para a instalação do banco de dados segue os comandos para instalação via Docker:
 Não tem o Docker instalado? Faça o Download por este link: [Download Docker](https://www.docker.com/products/docker-desktop)
