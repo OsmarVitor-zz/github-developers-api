@@ -67,10 +67,10 @@ Feito isso, é só importar o projeto para a sua IDE favorita e testar!
 
 # Curiosidades
 
-##### :heavy_exclamation_mark: E o Banco para Testes?
+### :heavy_exclamation_mark: E o Banco para Testes?
 Não é necessário criar um Banco de dados para testes, pois o H2 cria um banco em memória para os teste, e quando os testes terminam o banco em memória é apagado!
 
-##### :interrobang: Por que Unirest em vez de RestTemplate?
+### :interrobang: Por que Unirest em vez de RestTemplate?
 O RestTemplate tem suas vantagens pois suas dependências são as mesmas que a do Spring, portanto o Unirest levou vantagem neste projeto pois ele permite um grande simplicidade em chamadas mais genéricas, e permitiu fazer diversos tipos de requisições com 1 unico endpoint com pouquissimas classes e linhas de códigos.
 Além disso o Unirest carrega as dependências do GSON, que foram usadas constantemente nos testes para mapear as classes para JSON.
 
