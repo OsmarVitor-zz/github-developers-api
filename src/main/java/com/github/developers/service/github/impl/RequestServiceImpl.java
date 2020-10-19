@@ -6,12 +6,9 @@ import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 public class RequestServiceImpl implements RequestService {
-
-  private RestTemplate restTemplate = new RestTemplate();
 
   @Value("${github.base.search.name.url}")
   private String endpoint;
