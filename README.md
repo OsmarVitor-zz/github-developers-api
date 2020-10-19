@@ -67,6 +67,8 @@ Porém o projeto usa o FlyWay que se encarrega de fazer isso para gente, basta e
 ````
 mvn compile flyway:migrate
 ````
+Mas caso tenha algum problema basta criar um banco de dados com o nome `github-api`.
+
 Feito isso, é só importar o projeto para a sua IDE favorita e testar! 
 
 # Curiosidades
